@@ -21,7 +21,10 @@ keeper["books"] = [
 // Get Books
 var books = keeper["books"];
 
-// Remove 'books'
+// Remove Books
 delete keeper["books"];
+
+//Save data to localStorage:
+keeper.applyChanges();
 
 ```

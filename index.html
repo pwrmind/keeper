@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keeper - localStorage wrapper</title>
+    <script src="scripts/keeper.js"></script>
+    <style>
+        html, body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>Keeper</h2>
+    <h4>Very simple localStorage wrapper</h4>
+    <div>
+        <div>
+            Input JSON:</br>
+            <textarea name="input" id="input" cols="40" rows="10" onkeyup="inputOnChangeEventHandler(this)"></textarea>
+            <div id="warningOutput" style="color: darkred;"></div>
+        </div>
+        <div>Data in keeper: <pre id="output"></pre></div>
+    </div>
+    <script>
+        var output = document.getElementById("output");
+        var input = document.getElementById("input");
+        var warningOutput = document.getElementById("warningOutput");
+        var inputData = {};
+
+        function inputOnChangeEventHandler(sender){
+            warningOutput.innerText="";
+            try {
+                inputData = JSON.parse(sender.value);
+            }
+            catch(err) {
+                warningOutput.innerText="There is something wrong with input data.";
+                return;
+            }
+            keeper = inputData;
+            keeper.applyChanges();
+            output.innerText = JSON.stringify(keeper, null, 2);
+        };
+
+        output.innerText = JSON.stringify(keeper, null, 2);
+    </script>
+</body>
+</html>
